@@ -1,16 +1,15 @@
-let User = require('../Models');
+let AgentModel = require('../Models/Firm');
 const {grantAccessToken} = require('../../Auth/Auth')
 
 const login = (req,res) => {
     const {email,password} = req.body;
-    User.findOne({
+    AgentModel.findOne({
         email:email,
         password:password,
         
     })
     .then(doc => {
         if(doc){
-            if(!doc.isVerified) res.send("Your account is not verified")
             let token = grantAccessToken(email,password)
             res.send(token)
         }else{
@@ -26,7 +25,7 @@ const login = (req,res) => {
 
 const signup = (req,res) => {
     
-    let db = new User(req.body);
+    let db = new AgentModel(req.body);
     User.find({email:req.body.email})
     .then((doc)=>{
         if(doc.length > 0){
@@ -42,8 +41,7 @@ const signup = (req,res) => {
         res.send(doc)
     })
     .catch(err => {
-        
-        res.sendStatus(422)
+        res.sendStatus(422).send(err)
     })
 }
 
