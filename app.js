@@ -10,7 +10,7 @@ const NewsRoute = require('./Routes/NewsRoute');
 const PropertyTypeRoutes = require('./Routes/PropertyTypeRoutes');
 
 const DataBase = require('./DataBase/Database');
-const port = 8080;
+const port = process.env.PORT | 8080;
 app.use(express.json());
 
 
