@@ -27,4 +27,18 @@ const getAllFirms = (req, res) => {
         res.send(firms)
     })
 }
-module.exports ={createFirm,getAllFirms};
+
+const updateFirm = (req, res) => {
+    FirmModel.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        req.body,
+        {
+            new:true
+        }
+    )
+    .then(doc => res.send(doc))
+    .catch(err => res.send(err))
+}
+module.exports ={createFirm,getAllFirms,updateFirm};
