@@ -20,4 +20,17 @@ const getAllCities = (req, res) => {
         res.send(cities)
     })
 }
-module.exports ={createCity,getAllCities};
+const updateCity = (req, res) => {
+    CityModel.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        req.body,
+        {
+            new:true
+        }
+    )
+    .then(doc => res.send(doc))
+    .catch(err => res.send(err))
+}
+module.exports ={createCity,getAllCities,updateCity};

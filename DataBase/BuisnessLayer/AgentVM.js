@@ -28,4 +28,18 @@ const getAllAgents = (req, res) => {
         res.send(agents)
     })
 }
-module.exports ={createAgent,getAllAgents};
+const updateAgent = (req, res) => {
+    AgentModel.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        req.body,
+        {
+            new:true
+        }
+    )
+    .then(doc => res.send(doc))
+    .catch(err => res.send(err))
+}
+
+module.exports ={createAgent,getAllAgents,updateAgent};
