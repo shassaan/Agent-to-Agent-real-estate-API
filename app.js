@@ -3,6 +3,7 @@ const app = express();
 const UserRoute = require('./Routes/UserRoute');
 const AgentRoute = require('./Routes/AgentRoute');
 const FirmRoute = require('./Routes/FirmRoute');
+const CityRoute = require('./Routes/CityRoute');
 
 const DataBase = require('./DataBase/Database');
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/users',UserRoute);
 app.use('/api/agents',AgentRoute);
 app.use('/api/firms',FirmRoute);
+app.use('/api/cities',CityRoute);
 
 
 
