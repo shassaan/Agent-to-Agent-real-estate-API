@@ -1,44 +1,55 @@
 let FirmModel = require('../Models/Firm');
-const createFirm = (req,res) => {
-    
+const createFirm = (req, res) => {
+
     let db = new FirmModel(req.body);
-    FirmModel.find({email:req.body.email})
-    .then((doc)=>{
-        if(doc.length > 0){
-            res.send("Email already exists");
-        }
-    })
-    .catch(err => {
-        
-    })
-   
+    FirmModel.find({ email: req.body.email })
+        .then((doc) => {
+            if (doc.length > 0) {
+                res.send("Email already exists");
+            }
+        })
+        .catch(err => {
+
+        })
+
     db.save()
-    .then(doc => {
-        res.send(doc)
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(doc => {
+            res.send(doc)
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
 
 
 const getAllFirms = (req, res) => {
-    FirmModel.find({},(err, firms) => {
+    FirmModel.find({}, (err, firms) => {
         res.send(firms)
     })
 }
 
 const updateFirm = (req, res) => {
+    const { agents, ...bodyWithoutAgents } = req.body;
     FirmModel.findOneAndUpdate(
         {
             _id: req.params.id
         },
-        req.body,
+        agents ?
+            {
+
+                ...bodyWithoutAgents,
+                $push: { agents: req.body.agents },
+                
+
+            }
+            : req.body,
+
+
         {
-            new:true
+            new: true
         }
     )
-    .then(doc => res.send(doc))
-    .catch(err => res.send(err))
+        .then(doc => res.send(doc))
+        .catch(err => res.send(err))
 }
-module.exports ={createFirm,getAllFirms,updateFirm};
+module.exports = { createFirm, getAllFirms, updateFirm };
