@@ -8,7 +8,9 @@ const NeighbourhoodRoute = require('./Routes/NeighbourhoodRoute');
 const FileRoute = require('./Routes/FileRoute');
 const NewsRoute = require('./Routes/NewsRoute');
 const PropertyTypeRoutes = require('./Routes/PropertyTypeRoutes');
-
+const PropertyRoutes = require('./Routes/PropertyRoute');
+const visitsPlannedRoutes = require('./Routes/VisitsPlannedRoute');
+const ownersRoutes = require('./Routes/OwnersRoutes');
 const DataBase = require('./DataBase/Database');
 const port = process.env.PORT | 8080;
 app.use(express.json());
@@ -23,6 +25,9 @@ app.use('/api/property-types',PropertyTypeRoutes);
 app.use('/api/news',NewsRoute);
 app.use('/api/files',FileRoute);
 app.use('/api/neighbourhood',NeighbourhoodRoute);
+app.use('/api/properties',PropertyRoutes);
+app.use('/api/visits-planned',visitsPlannedRoutes);
+app.use('/api/owners',ownersRoutes);
 
 
 

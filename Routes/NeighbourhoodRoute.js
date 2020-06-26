@@ -18,7 +18,7 @@ router.route('/')
         res.send(result);
     })
 })
-
+router.route('/:id')
 .put((req, res) => {
     NeighborhoodModel.findOneAndUpdate(
         {

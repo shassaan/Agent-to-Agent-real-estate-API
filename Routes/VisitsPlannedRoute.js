@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
-const PropertyTypeModel = require('../DataBase/Models/PropertyType');
+const visitsPlanned = require('../DataBase/Models/ProperyVisitsPlanned');
 router.route('/')
 .post((req, res) => {
-    let db = new PropertyTypeModel(req.body);
+    let db = new visitsPlanned(req.body);
     db.save()
     .then(doc => {
         res.send(doc)
@@ -14,23 +14,28 @@ router.route('/')
 })
 
 .get((req, res) => {
-    PropertyTypeModel.find({},(err,result)=>{
+    visitsPlanned.find({},(err,result)=>{
         res.send(result);
     })
 })
 router.route('/:id')
 .put((req, res) => {
-    PropertyTypeModel.findOneAndUpdate(
+    
+    PropertyModel.findOneAndUpdate(
         {
             _id: req.params.id
         },
-        req.body,
+            
+            req.body,
+            
+
+
         {
-            new:true
+            new: true
         }
     )
-    .then(doc => res.send(doc))
-    .catch(err => res.send(err))
+        .then(doc => res.send(doc))
+        .catch(err => res.send(err))
 })
 
 module.exports = router;

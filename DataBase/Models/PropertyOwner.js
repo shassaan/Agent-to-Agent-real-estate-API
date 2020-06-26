@@ -5,7 +5,9 @@ var PropertyOwner = mongoose.Schema({
    lastName:String,
    phone:String,
    email:String,
-   address:{type:Schema.Types.ObjectId,ref:'Address'}
+   street:String,
+   city:{type:Schema.Types.ObjectId,ref:'City'},
+   property:{type:Schema.Types.ObjectId,ref:'Property'}
 })
 
 module.exports = mongoose.model('PropertyOwner',PropertyOwner);
