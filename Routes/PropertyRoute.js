@@ -56,5 +56,25 @@ router.route('/:id')
         .then(doc => res.send(doc))
         .catch(err => res.send(err))
 })
+.delete((req, res)=>{
+    PropertyModel.findByIdAndDelete({_id: req.params.id})
+    .then(doc => res.sendStatus(200))
+    .catch(err => res.send(err))
+})
+.get((req, res)=>{
+    PropertyModel.findById({_id: req.params.id})
+    .populate("approvedDisApprovedBy")
+    .populate("agent")
+    .populate("firm")
+    .populate("visitsPlanned")
+    .populate("owners")
+    .populate("type")
+    .populate("locationCity")
+    .populate("locationNeighborhood")
+    .then(doc => {
+        res.send(doc)
+    })
+    .catch(err => res.send(err))
+})
 
 module.exports = router;
