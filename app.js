@@ -13,7 +13,7 @@ const PropertyRoutes = require('./Routes/PropertyRoute');
 const visitsPlannedRoutes = require('./Routes/VisitsPlannedRoute');
 const ownersRoutes = require('./Routes/OwnersRoutes');
 const DataBase = require('./DataBase/Database');
-const port = process.env.PORT | 8080;
+const port = process.env.PORT || 8080;
 app.use(express.json());
 global.__basedir = __dirname;
 
