@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 const UserRoute = require('./Routes/UserRoute');
 const AgentRoute = require('./Routes/AgentRoute');
 const FirmRoute = require('./Routes/FirmRoute');
@@ -14,8 +15,13 @@ const ownersRoutes = require('./Routes/OwnersRoutes');
 const DataBase = require('./DataBase/Database');
 const port = process.env.PORT | 8080;
 app.use(express.json());
+global.__basedir = __dirname;
 
-
+app.use('/uploads/',(req,res)=>{
+    fs.readFile(__dirname+'/uploads/'+req.url,(err,data)=>{
+        res.sendFile(__dirname+'/uploads/'+req.url);
+    });
+})
 
 app.use('/api/users',UserRoute);
 app.use('/api/agents',AgentRoute);
