@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "hello world"
+    "test": "hello world",
+    "start": "node app.js"
   },
   "author": "Syed Hassaan Ahmed",
   "license": "ISC",
