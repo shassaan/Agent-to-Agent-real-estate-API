@@ -6,7 +6,7 @@ const password = "hellocluster"
 //const url = `mongodb://${server}/${database}`;
 
 //const MongoClient = require('mongodb').MongoClient;
-const url = `mongodb+srv://shassaan:${hellocluster}@cluster0-u7ps2.mongodb.net/${database}?retryWrites=true&w=majority`;
+const url = `mongodb+srv://shassaan:${password}@cluster0-u7ps2.mongodb.net/${database}?retryWrites=true&w=majority`;
 //const client = new MongoClient(uri, { useNewUrlParser: true });
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
