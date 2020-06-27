@@ -4,8 +4,8 @@ const JWT_TOKEN_SECRET =  require('../Others/Constants')
 
 
 const grantAccessToken = (email,roles)=>{
-    const accessToken = jwt.sign({username:email,role:roles},JWT_TOKEN_SECRET);
-    return accessToken;
+    const at = jwt.sign({username:email,role:roles},JWT_TOKEN_SECRET);
+    return at;
 }
 
 
