@@ -77,4 +77,20 @@ router.route('/:id')
     .catch(err => res.send(err))
 })
 
+router.route('/house-visits')
+.get((req, res) => {
+    PropertyModel.findById({_id: req.params.id})
+    .populate("approvedDisApprovedBy")
+    .populate("agent")
+    .populate("firm")
+    .populate("visitsPlanned")
+    .populate("owners")
+    .populate("type")
+    .populate("locationCity")
+    .populate("locationNeighborhood")
+    .then(doc => {
+        res.send(doc)
+    })
+    .catch(err => res.send(err))
+})
 module.exports = router;
