@@ -32,5 +32,15 @@ router.route('/:id')
     .then(doc => res.send(doc))
     .catch(err => res.send(err))
 })
+.delete((req, res)=>{
+    NewsModel.findByIdAndDelete({_id: req.params.id})
+    .then(doc => res.sendStatus(200))
+    .catch(err => res.send(err))
+})
+.get((req, res)=>{
+    NewsModel.findById({_id: req.params.id})
+    .then(doc => res.send(doc))
+    .catch(err => res.send(err))
+});
 
 module.exports = router;
