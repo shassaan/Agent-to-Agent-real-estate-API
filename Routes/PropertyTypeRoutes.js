@@ -19,6 +19,11 @@ router.route('/')
     })
 })
 router.route('/:id')
+.delete((req, res)=>{
+    PropertyTypeModel.findByIdAndDelete({_id: req.params.id})
+    .then(doc => res.sendStatus(200))
+    .catch(err => res.send(err))
+})
 .put((req, res) => {
     PropertyTypeModel.findOneAndUpdate(
         {
