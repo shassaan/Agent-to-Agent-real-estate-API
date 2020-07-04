@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router();
-const {createAgent,getAllAgents,updateAgent} = require('../DataBase/BuisnessLayer/AgentVM');
+const {createAgent,getAllAgents,updateAgent,loginAgent} = require('../DataBase/BuisnessLayer/AgentVM');
+
+
+router.route('/login')
+.post(loginAgent);
+
 
 router.route('/')
 .post(createAgent)

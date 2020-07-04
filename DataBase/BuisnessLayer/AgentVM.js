@@ -42,4 +42,21 @@ const updateAgent = (req, res) => {
     .catch(err => res.send(err))
 }
 
-module.exports ={createAgent,getAllAgents,updateAgent};
+const loginAgent = (req, res) => {
+    AgentModel.findOne(
+        {
+            email: req.body.email,
+            password: req.body.password
+        }
+    )
+    .then(doc => {
+        if(doc){
+            res.send(doc)
+        }else{
+            res.send("Invalid credentials")
+        }
+    })
+    .catch(err => res.send("Invalid credentials"))
+}
+
+module.exports ={createAgent,getAllAgents,updateAgent,loginAgent};
