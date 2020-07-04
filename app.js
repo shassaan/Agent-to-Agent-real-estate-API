@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const fs = require('fs');
 const UserRoute = require('./Routes/UserRoute');
@@ -14,7 +15,9 @@ const visitsPlannedRoutes = require('./Routes/VisitsPlannedRoute');
 const ownersRoutes = require('./Routes/OwnersRoutes');
 
 const DataBase = require('./DataBase/Database');
+
 const port = process.env.PORT || 8080;
+app.use(cors());
 app.use(express.json());
 global.__basedir = __dirname;
 
