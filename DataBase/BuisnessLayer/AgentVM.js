@@ -1,4 +1,5 @@
 let AgentModel = require('../Models/Agent');
+const { grantAccessToken } = require('../../Auth/Auth');
 
 const createAgent = (req,res) => {
     
@@ -51,7 +52,8 @@ const loginAgent = (req, res) => {
     )
     .then(doc => {
         if(doc){
-            res.send(doc)
+            let token = grantAccessToken(req.body.email,[]);
+            res.send({token,group:doc.group});
         }else{
             res.send("Invalid credentials")
         }
