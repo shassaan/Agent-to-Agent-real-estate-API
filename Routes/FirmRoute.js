@@ -11,7 +11,7 @@ router
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
-router.route('/:id')
+
 .put(updateFirm)
 
 module.exports = router;

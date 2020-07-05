@@ -47,12 +47,12 @@ router.route('/')
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
-router.route('/:id')
+
 .put((req, res) => {
     
     FileModel.findOneAndUpdate(
         {
-            _id: req.params.id
+            _id: req.body.id
         },
         req.body,
         {

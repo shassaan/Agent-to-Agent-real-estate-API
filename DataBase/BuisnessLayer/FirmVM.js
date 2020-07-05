@@ -32,7 +32,7 @@ const updateFirm = (req, res) => {
     const { agents, ...bodyWithoutAgents } = req.body;
     FirmModel.findOneAndUpdate(
         {
-            _id: req.params.id
+            _id: req.body.id
         },
         agents ?
             {

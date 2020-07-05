@@ -23,7 +23,7 @@ const getAllCities = (req, res) => {
 const updateCity = (req, res) => {
     CityModel.findOneAndUpdate(
         {
-            _id: req.params.id
+            _id: req.body.id
         },
         req.body,
         {

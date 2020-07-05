@@ -16,6 +16,5 @@ router.route('/')
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
-router.route('/:id')
 .put(updateAgent)
 module.exports = router;
