@@ -13,13 +13,12 @@ router
 .route('/')
 .post(createCity)
 .get(getAllCities)
-
-router.route('/:id')
 .delete((req, res)=>{
-    CityModel.findByIdAndDelete({_id: req.params.id})
+    CityModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
+router.route('/:id')
 .put(updateCity)
 
 

@@ -41,14 +41,15 @@ router.route('/')
         res.send(result);
     })
 })
-router.route('/:id')
+
 .delete((req, res)=>{
-    FileModel.findByIdAndDelete({_id: req.params.id})
+    FileModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
+router.route('/:id')
 .put((req, res) => {
-    r
+    
     FileModel.findOneAndUpdate(
         {
             _id: req.params.id

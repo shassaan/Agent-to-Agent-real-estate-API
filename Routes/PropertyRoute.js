@@ -21,6 +21,11 @@ router.route('/')
         res.send(results);
     })
 })
+.delete((req, res)=>{
+    PropertyModel.findByIdAndDelete({_id: req.body.id})
+    .then(doc => res.sendStatus(200))
+    .catch(err => res.send(err))
+})
 router.route('/:id')
 .put((req, res) => {
     const { 
@@ -56,11 +61,7 @@ router.route('/:id')
         .then(doc => res.send(doc))
         .catch(err => res.send(err))
 })
-.delete((req, res)=>{
-    PropertyModel.findByIdAndDelete({_id: req.params.id})
-    .then(doc => res.sendStatus(200))
-    .catch(err => res.send(err))
-})
+
 .get((req, res)=>{
     PropertyModel.findById({_id: req.params.id})
     .populate("approvedDisApprovedBy")

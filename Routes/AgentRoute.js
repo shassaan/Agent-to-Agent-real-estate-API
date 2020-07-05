@@ -11,12 +11,11 @@ router.route('/login')
 router.route('/')
 .post(createAgent)
 .get(getAllAgents)
-
-router.route('/:id')
 .delete((req, res)=>{
-    AgentModel.findByIdAndDelete({_id: req.params.id})
+    AgentModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
+router.route('/:id')
 .put(updateAgent)
 module.exports = router;

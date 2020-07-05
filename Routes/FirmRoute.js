@@ -6,13 +6,12 @@ router
 .route('/')
 .post(createFirm)
 .get(getAllFirms)
-
-router.route('/:id')
 .delete((req, res)=>{
-    FirmModel.findByIdAndDelete({_id: req.params.id})
+    FirmModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.send(err))
 })
+router.route('/:id')
 .put(updateFirm)
 
 module.exports = router;
