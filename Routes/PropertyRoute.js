@@ -15,8 +15,14 @@ router.route('/')
 
 .get((req, res) => {
     PropertyModel.find({})
-    .populate('visitsPlanned')
-    .populate('owners')
+    .populate("approvedDisApprovedBy")
+    .populate("agent")
+    .populate("firm")
+    .populate("visitsPlanned")
+    .populate("owners")
+    .populate("type")
+    .populate("locationCity")
+    .populate("locationNeighborhood")
     .exec((err, results) => {
         res.send(results);
     })
@@ -63,7 +69,7 @@ router.route('/')
 })
 
 .get((req, res)=>{
-    PropertyModel.findById({_id: req.params.id})
+    PropertyModel.findById({_id: req.body.id})
     .populate("approvedDisApprovedBy")
     .populate("agent")
     .populate("firm")
@@ -80,7 +86,7 @@ router.route('/')
 
 router.route('/house-visits')
 .get((req, res) => {
-    PropertyModel.findById({_id: req.params.id})
+    PropertyModel.findById({_id: req.body.id})
     .populate("approvedDisApprovedBy")
     .populate("agent")
     .populate("firm")
