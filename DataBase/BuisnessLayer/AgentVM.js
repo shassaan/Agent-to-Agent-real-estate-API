@@ -52,7 +52,7 @@ const loginAgent = (req, res) => {
     )
     .then(doc => {
         if(doc){
-            let token = grantAccessToken(req.body.email,[]);
+            let token = grantAccessToken(req.body.email,req.body.firstName+" "+req.body.lastName,doc._id);
             res.send({token,group:doc.group});
         }else{
             res.send("Invalid credentials")
