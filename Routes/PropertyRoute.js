@@ -9,7 +9,7 @@ router.route('/')
         res.send(doc)
     })
     .catch(err => {
-        res.send(err)
+        res.status(400).send(err)
     })
 })
 
@@ -30,7 +30,7 @@ router.route('/')
 .delete((req, res)=>{
     PropertyModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
-    .catch(err => res.send(err))
+    .catch(err => res.status(400).send(err))
 })
 
 .put((req, res) => {
@@ -65,7 +65,7 @@ router.route('/')
         }
     )
         .then(doc => res.send(doc))
-        .catch(err => res.send(err))
+        .catch(err => res.status(400).send(err))
 })
 
 .get((req, res)=>{
@@ -81,7 +81,7 @@ router.route('/')
     .then(doc => {
         res.send(doc)
     })
-    .catch(err => res.send(err))
+    .catch(err => res.status(400).send(err))
 })
 
 router.route('/house-visits')
@@ -98,6 +98,6 @@ router.route('/house-visits')
     .then(doc => {
         res.send(doc)
     })
-    .catch(err => res.send(err))
+    .catch(err => res.status(400).send(err))
 })
 module.exports = router;

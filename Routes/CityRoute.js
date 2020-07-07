@@ -16,7 +16,7 @@ router
 .delete((req, res)=>{
     CityModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
-    .catch(err => res.send(err))
+    .catch(err => res.status(400).send(err))
 })
 
 .put(updateCity)

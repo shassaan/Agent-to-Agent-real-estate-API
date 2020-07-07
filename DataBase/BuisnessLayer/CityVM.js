@@ -10,7 +10,7 @@ const createCity = (req,res) => {
         res.send(doc)
     })
     .catch(err => {
-        res.send(err)
+        res.status(400).send(err)
     })
 }
 
@@ -31,6 +31,6 @@ const updateCity = (req, res) => {
         }
     )
     .then(doc => res.send(doc))
-    .catch(err => res.send(err))
+    .catch(err => res.status(400).send(err))
 }
 module.exports ={createCity,getAllCities,updateCity};

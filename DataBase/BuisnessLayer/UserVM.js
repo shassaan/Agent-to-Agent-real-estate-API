@@ -18,7 +18,7 @@ const login = (req,res) => {
     })
     .catch(err => {
         console.log(err)
-        res.send(err)
+        res.status(400).send(err)
     })
 }
 
