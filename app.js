@@ -15,7 +15,7 @@ const visitsPlannedRoutes = require('./Routes/VisitsPlannedRoute');
 const ownersRoutes = require('./Routes/OwnersRoutes');
 
 const DataBase = require('./DataBase/Database');
-const { authenticateToken } = require('./Auth/Auth');
+
 
 const port = process.env.PORT || 8080;
 app.use(cors());
@@ -31,15 +31,15 @@ app.use('/uploads/',(req,res)=>{
 
 app.use('/api/users',UserRoute);
 app.use('/api/agents',AgentRoute);
-app.use('/api/firms',authenticateToken,FirmRoute);
-app.use('/api/cities',authenticateToken,CityRoute);
-app.use('/api/property-types',authenticateToken,PropertyTypeRoutes);
-app.use('/api/news',authenticateToken,NewsRoute);
-app.use('/api/files',authenticateToken,FileRoute);
-app.use('/api/neighbourhood',authenticateToken,NeighbourhoodRoute);
-app.use('/api/properties',authenticateToken,PropertyRoutes);
-app.use('/api/visits-planned',authenticateToken,visitsPlannedRoutes);
-app.use('/api/owners',authenticateToken,ownersRoutes);
+app.use('/api/firms',FirmRoute);
+app.use('/api/cities',CityRoute);
+app.use('/api/property-types',PropertyTypeRoutes);
+app.use('/api/news',NewsRoute);
+app.use('/api/files',FileRoute);
+app.use('/api/neighbourhood',NeighbourhoodRoute);
+app.use('/api/properties',PropertyRoutes);
+app.use('/api/visits-planned',visitsPlannedRoutes);
+app.use('/api/owners',ownersRoutes);
 
 
 

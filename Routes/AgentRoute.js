@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const AgentModel = require('../DataBase/Models/Agent');
 const {createAgent,getAllAgents,updateAgent,loginAgent} = require('../DataBase/BuisnessLayer/AgentVM');
+const { authenticateToken } = require('../Auth/Auth');
 
 
 router.route('/login')
@@ -9,12 +10,12 @@ router.route('/login')
 
 
 router.route('/')
-.post(createAgent)
+.post(authenticateToken,createAgent)
 .get(getAllAgents)
-.delete((req, res)=>{
+.delete(authenticateToken,(req, res)=>{
     AgentModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.status(400).send(err))
 })
-.put(updateAgent)
+.put(authenticateToken,updateAgent)
 module.exports = router;

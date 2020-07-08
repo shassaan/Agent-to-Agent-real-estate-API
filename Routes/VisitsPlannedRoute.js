@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const visitsPlanned = require('../DataBase/Models/ProperyVisitsPlanned');
+const { authenticateToken } = require('../Auth/Auth');
 router.route('/')
-.post((req, res) => {
+.post(authenticateToken,(req, res) => {
     let db = new visitsPlanned(req.body);
     db.save()
     .then(doc => {
@@ -19,13 +20,13 @@ router.route('/')
     })
 })
 
-.delete((req, res)=>{
+.delete(authenticateToken,(req, res)=>{
     visitsPlanned.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.status(400).send(err))
 })
 
-.put((req, res) => {
+.put(authenticateToken,(req, res) => {
     
     PropertyModel.findOneAndUpdate(
         {

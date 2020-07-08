@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const PropertyModel = require('../DataBase/Models/Property');
+const { authenticateToken } = require('../Auth/Auth');
 router.route('/')
-.post((req, res) => {
+.post(authenticateToken,(req, res) => {
     let db = new PropertyModel(req.body);
     db.save()
     .then(doc => {
@@ -27,13 +28,13 @@ router.route('/')
         res.send(results);
     })
 })
-.delete((req, res)=>{
+.delete(authenticateToken,(req, res)=>{
     PropertyModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.status(400).send(err))
 })
 
-.put((req, res) => {
+.put(authenticateToken,(req, res) => {
     const { 
         galleryImages,
         additionalImages,

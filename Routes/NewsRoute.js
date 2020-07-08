@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const NewsModel = require('../DataBase/Models/News');
+const { authenticateToken } = require('../Auth/Auth');
 router.route('/')
-.post((req, res) => {
+.post(authenticateToken,(req, res) => {
     let db = new NewsModel(req.body);
     db.save()
     .then(doc => {
@@ -18,13 +19,13 @@ router.route('/')
         res.send(result);
     })
 })
-.delete((req, res)=>{
+.delete(authenticateToken,(req, res)=>{
     NewsModel.findByIdAndDelete({_id: req.body.id})
     .then(doc => res.sendStatus(200))
     .catch(err => res.status(400).send(err))
 })
 
-.put((req, res) => {
+.put(authenticateToken,(req, res) => {
     NewsModel.findOneAndUpdate(
         {
             _id: req.body.id
