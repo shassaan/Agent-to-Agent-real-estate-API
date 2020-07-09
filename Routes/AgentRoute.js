@@ -10,7 +10,7 @@ router.route('/login')
 
 
 router.route('/')
-.post(authenticateToken,createAgent)
+.post(createAgent)
 .get(getAllAgents)
 .delete(authenticateToken,(req, res)=>{
     AgentModel.findByIdAndDelete({_id: req.body.id})
