@@ -23,8 +23,12 @@ const createFirm = (req, res) => {
 
 
 const getAllFirms = (req, res) => {
-    FirmModel.find({}, (err, firms) => {
-        res.send(firms)
+    FirmModel.find({})
+    .populate("agents")
+    .populate("adminUser")
+    .populate("city")
+    .exec((err, results) => {
+        res.send(results);
     })
 }
 
