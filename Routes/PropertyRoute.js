@@ -4,7 +4,8 @@ const PropertyModel = require('../DataBase/Models/Property');
 const { authenticateToken } = require('../Auth/Auth');
 router.route('/')
 .post(authenticateToken,(req, res) => {
-    let db = new PropertyModel(req.body);
+    var createdDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    let db = new PropertyModel({...req.body,createdDate});
     db.save()
     .then(doc => {
         res.send(doc)
@@ -35,6 +36,7 @@ router.route('/')
 })
 
 .put(authenticateToken,(req, res) => {
+    var createdDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     const { 
         galleryImages,
         additionalImages,
@@ -47,7 +49,7 @@ router.route('/')
         },
             
             {
-
+                createdDate,
                 ...bodyWithoutCollections,
                 $push: { 
                     galleryImages: req.body.galleryImages,

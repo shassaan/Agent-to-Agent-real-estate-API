@@ -75,6 +75,7 @@ var Property = mongoose.Schema({
     locationLatitude:String,
     locationLongitude:String,
     locationPublishHouseNumber:Boolean,
+    createdDate:Date,
 });
 
 module.exports = mongoose.model('Property', Property);
