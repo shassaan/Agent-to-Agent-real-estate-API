@@ -25,6 +25,7 @@ router.route('/')
     .populate("type")
     .populate("locationCity")
     .populate("locationNeighborhood")
+    
     .exec((err, results) => {
         res.send(results);
     })
@@ -42,6 +43,7 @@ router.route('/')
         additionalImages,
         visitsPlanned,
         owners,
+        priceChange,
         ...bodyWithoutCollections } = req.body;
     PropertyModel.findOneAndUpdate(
         {
@@ -56,6 +58,7 @@ router.route('/')
                     additionalImages: req.body.additionalImages,
                     visitsPlanned: req.body.visitsPlanned,
                     owners: req.body.owners,
+                    priceChange:req.body.priceChange
                  },
                 
 
@@ -81,6 +84,7 @@ router.route('/')
     .populate("type")
     .populate("locationCity")
     .populate("locationNeighborhood")
+    
     .then(doc => {
         res.send(doc)
     })
@@ -98,6 +102,7 @@ router.route('/house-visits')
     .populate("type")
     .populate("locationCity")
     .populate("locationNeighborhood")
+    
     .then(doc => {
         res.send(doc)
     })
