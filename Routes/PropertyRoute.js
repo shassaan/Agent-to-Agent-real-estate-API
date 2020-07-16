@@ -53,12 +53,12 @@ router.route('/')
             {
                 createdDate,
                 ...bodyWithoutCollections,
-                $push: { 
-                    galleryImages: req.body.galleryImages,
-                    additionalImages: req.body.additionalImages,
-                    visitsPlanned: req.body.visitsPlanned,
-                    owners: req.body.owners,
-                    priceChange:req.body.priceChange
+                  $push: { 
+                    galleryImages: req.body.galleryImages === null ? undefined:req.body.galleryImages,
+                    additionalImages: req.body.additionalImages === null ? undefined:req.body.additionalImages,
+                    visitsPlanned: req.body.visitsPlanned === null ? undefined:req.body.visitsPlanned,
+                    owners: req.body.owners === null ? undefined:req.body.owners,
+                    priceChange:req.body.priceChange === null ? undefined:req.body.priceChange
                  },
                 
 
