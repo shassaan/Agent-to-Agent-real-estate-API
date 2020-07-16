@@ -14,6 +14,7 @@ var Property = mongoose.Schema({
     additionalImages: [String],
     video: String,
     visitsPlanned: [{ type: Schema.Types.ObjectId, ref: 'PropertVisitsPlanned' }],
+    priceChange:[],
     saleAmountRequested: Number,
     saleCurrency: String,
     saleNewPrice: Number,
