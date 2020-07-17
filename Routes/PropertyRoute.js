@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router();
 const PropertyModel = require('../DataBase/Models/Property');
 const { authenticateToken } = require('../Auth/Auth');
+const { json } = require('body-parser');
 router.route('/')
 .post(authenticateToken,(req, res) => {
-    var createdDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    var createdDate = new Date()
     let db = new PropertyModel({...req.body,createdDate});
     db.save()
     .then(doc => {
@@ -37,7 +38,7 @@ router.route('/')
 })
 
 .put(authenticateToken,(req, res) => {
-    var createdDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    var createdDate = new Date();
     const { 
         galleryImages,
         additionalImages,
@@ -54,11 +55,11 @@ router.route('/')
                 createdDate,
                 ...bodyWithoutCollections,
                   $push: { 
-                    ...req.body.galleryImages && {galleryImages:req.body.galleryImages},
-                    ...req.body.additionalImages && {additionalImages:req.body.additionalImages},
-                    ...req.body.visitsPlanned && {visitsPlanned:req.body.visitsPlanned},
-                    ...req.body.owners && {owners:req.body.owners},
-                    ...req.body.priceChange && {priceChange:req.body.priceChange},
+                    galleryImages:req.body.galleryImages,
+                    additionalImages:req.body.additionalImages ,
+                    visitsPlanned:req.body.visitsPlanned ,
+                    owners:req.body.owners ,
+                    priceChange:req.body.priceChange,
                  },
                 
 
@@ -70,7 +71,10 @@ router.route('/')
             new: true
         }
     )
-        .then(doc => res.send(doc))
+        .then(doc => 
+            {
+                res.send(doc)
+            })
         .catch(err => res.status(400).send(err))
 })
 
